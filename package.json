@@ -1,0 +1,38 @@
+{
+  "name": "fredy-evm-preflight",
+  "version": "0.1.0",
+  "description": "Audit an EVM NFT mint before broadcasting. Read-only contract reads + Sourcify check + EIP-7702 wallet safety check + fee data.",
+  "main": "preflight.js",
+  "bin": {
+    "fredy-preflight": "./preflight.js"
+  },
+  "scripts": {
+    "start": "node preflight.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "nft",
+    "preflight",
+    "audit",
+    "evm",
+    "ethereum",
+    "sourcify",
+    "eip-7702",
+    "pectra",
+    "ethers",
+    "web3"
+  ],
+  "author": "zyapasha",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyapasha/fredy-evm-preflight.git"
+  },
+  "homepage": "https://github.com/zyapasha/fredy-evm-preflight#readme",
+  "dependencies": {
+    "ethers": "^6.13.0"
+  }
+}
