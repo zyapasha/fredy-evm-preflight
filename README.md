@@ -1,8 +1,26 @@
 # fredy-evm-preflight
 
+🌐 **English** · [Bahasa Indonesia](README.id.md)
+
 > Audit an EVM NFT mint before broadcasting. Read-only, no signing, no broadcasts.
 
 Sister tool to [fredy-mint-executor](https://github.com/zyapasha/fredy-mint-executor). Run this first to know whether the mint will succeed, surface every blocker, and avoid wasting gas on a doomed transaction.
+
+## For beginners: what is this for?
+
+Before paying gas to mint an NFT, you want to know:
+
+- Is the contract real and verified, or a copycat?
+- Is it paused / sold out / wrong network?
+- Is my wallet eligible (enough gas, not already minted, not blocked by a wallet upgrade)?
+
+This tool answers all of that in <5 seconds, **without spending any gas and without your private key.** Read-only — it just talks to public RPCs. Treat it as the "are we good to mint?" check.
+
+**What you need:**
+- Linux / macOS / WSL (Windows Subsystem for Linux)
+- Node.js 20+ — verify with `node --version`
+- The contract address you want to audit
+- (Optional) the wallet address you'll mint from — for the wallet-side checks
 
 ## What it checks
 
@@ -45,12 +63,14 @@ node preflight.js 0xCONTRACT
 # Audit contract + check a specific wallet
 node preflight.js 0xCONTRACT 0xWALLET
 
-# Force a chain (skip detection)
+# Force a chain (skip detection, faster)
 node preflight.js 0xCONTRACT --chain=base
 
 # Quiet mode (suppress probe logs)
 node preflight.js 0xCONTRACT --quiet
 ```
+
+**Beginner tip:** if the verdict is `sold out` or `paused`, stop — minting will revert and you pay gas anyway. If the wallet check shows EIP-7702 delegate code, revoke it (snippet below) before pointing `fredy-mint-executor` at the contract.
 
 ## Sample output
 
